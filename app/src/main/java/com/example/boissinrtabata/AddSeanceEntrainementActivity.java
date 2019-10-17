@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.boissinrtabata.db.DataBaseClient;
 import com.example.boissinrtabata.db.SeanceEntrainement;
+import com.example.boissinrtabata.model.CalculSeanceEntrainement;
 
 public class AddSeanceEntrainementActivity extends AppCompatActivity {
 
@@ -24,6 +28,7 @@ public class AddSeanceEntrainementActivity extends AppCompatActivity {
     private EditText editTextNumberCycles;
     private EditText editTextNumberTabatas;
     private EditText editTextTimeLongRest;
+    private TextView totaleTabata;
     private Button saveView;
 
     @Override
@@ -41,7 +46,9 @@ public class AddSeanceEntrainementActivity extends AppCompatActivity {
         editTextNumberCycles = findViewById(R.id.editTextNumberCycles);
         editTextNumberTabatas = findViewById(R.id.editTextNumberTabatas);
         editTextTimeLongRest = findViewById(R.id.editTextTimeLongRest);
+        totaleTabata = findViewById(R.id.total_tabata);
         saveView = findViewById(R.id.button_save);
+
 
         /*
         //Importer la photo
@@ -157,6 +164,14 @@ public class AddSeanceEntrainementActivity extends AppCompatActivity {
                 seanceEntrainement.setCycles(Integer.parseInt(sNumberCycles));
                 seanceEntrainement.setTabatas(Integer.parseInt(sNumberTabatas));
                 seanceEntrainement.setTimeLongRest(Integer.parseInt(sTimeLongRest));
+                CalculSeanceEntrainement calculSeanceEntrainement = new CalculSeanceEntrainement();
+                int totaletabatas = calculSeanceEntrainement.CalculTabatas(seanceEntrainement.getTimePrepare()
+                        ,seanceEntrainement.getTabatas()
+                        ,seanceEntrainement.getCycles()
+                        ,seanceEntrainement.getTimeWork()
+                        ,seanceEntrainement.getTimeRest()
+                        ,seanceEntrainement.getTimeLongRest());
+                seanceEntrainement.setTotaltabata(totaletabatas);
 
 
 
@@ -248,9 +263,17 @@ public class AddSeanceEntrainementActivity extends AppCompatActivity {
                 editTextTimeLongRest.setText(String.valueOf(Integer.valueOf(editTextNumberTabatas.getText().toString()) + 1));
                 break;
         }
-        RecalculTabata();
-    }
 
-    private void RecalculTabata() {
+        CalculSeanceEntrainement calculSeanceEntrainement = new CalculSeanceEntrainement();
+        int totaletabatas = calculSeanceEntrainement.CalculTabatas(Integer.valueOf(editTextTimePrepare.getText().toString())
+                ,Integer.valueOf(editTextNumberTabatas.getText().toString())
+                ,Integer.valueOf(editTextNumberCycles.getText().toString())
+                ,Integer.valueOf(editTextTimeWork.getText().toString())
+                ,Integer.valueOf(editTextTimeRest.getText().toString())
+                ,Integer.valueOf(editTextTimeLongRest.getText().toString()));
+        int secondes = totaletabatas % 60;
+        int minutes = (totaletabatas / 60) % 60;
+        int heures = (totaletabatas / 3600) % 3600;
+        totaleTabata.setText("Total Tabata : " + heures + ":" + minutes + ":" + secondes);
     }
 }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF303030"
     tools:context=".GestionSeanceEntrainementActivity">
 
 
@@ -273,6 +274,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20px"
         android:gravity="center">
         />
         <Button
@@ -281,18 +283,17 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:text="supprimer"
+            android:layout_marginRight="20px"
+
+            android:background="@drawable/border"
             />
         <Button
             android:id="@+id/ChangeSave"
             android:layout_width="135dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
             android:text="Enregistrer"
-            />
-        <Button
-            android:id="@+id/Lancer"
-            android:layout_width="135dp"
-            android:layout_height="match_parent"
-            android:text="Lancer"
+            android:background="@drawable/border"
             />
     </LinearLayout>
 </RelativeLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear231"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_alignParentTop="true"
+        android:gravity="center">
+        />
+        <TextView
+
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Répétitions"
+            />
+        <TextView
+
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Restant"
+            />
+        <TextView
+
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Séries"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_below="@+id/linear231"
+        android:gravity="center">
+        />
+        <TextView
+            android:id="@+id/NombreRepet"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text=""
+            android:textSize="25dp"
+            />
+        <TextView
+            android:id="@+id/NombreRestant"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text=""
+            android:textSize="25dp"
+            />
+        <TextView
+            android:id="@+id/NombreSerie"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text=""
+            android:textSize="25dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/nameSeance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text=""
+        android:gravity="center"
+        android:textColor="#FFFFFFFF"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp">
+
+        <Button
+            android:id="@+id/Demarrer"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="Lancer"
+            android:background="@drawable/border"/>
+    </LinearLayout>
+</RelativeLayout>

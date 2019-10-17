@@ -7,6 +7,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.boissinrtabata.model.CalculSeanceEntrainement;
+
 public class DataBaseClient {
     // Instance unique permettant de faire le lien avec la base de données
     private static DataBaseClient instance;
@@ -47,8 +49,8 @@ public class DataBaseClient {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             //insert user
-            db.execSQL("INSERT INTO seanceEntrainement (nomSeance,timePrepare,timeWork,timeRest,cycles,tabatas,timeLongRest,totaltabata) VALUES(\"Test1\",10,10,10,10,1,0,40);");
-            db.execSQL("INSERT INTO seanceEntrainement (nomSeance,timePrepare,timeWork,timeRest,cycles,tabatas,timeLongRest,totaltabata) VALUES(\"Test2\",10,10,10,10,1,0,40);");
+            db.execSQL("INSERT INTO seanceEntrainement (nomSeance,timePrepare,timeWork,timeRest,cycles,tabatas,timeLongRest,totaltabata) VALUES(\"Test1\",10,10,10,10,1,0,(10 + ((10 + 10)*10) + 1)* 1);");
+            db.execSQL("INSERT INTO seanceEntrainement (nomSeance,timePrepare,timeWork,timeRest,cycles,tabatas,timeLongRest,totaltabata) VALUES(\"Test2\",10,10,10,10,1,0,(10 + ((10 + 10)*10) + 1)* 1);");
         }
     };
 

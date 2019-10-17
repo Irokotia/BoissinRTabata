@@ -14,6 +14,8 @@ public interface SeanceEntrainementDao {
     @Query("SELECT * FROM SeanceEntrainement")
     List<SeanceEntrainement> getAll();
 
+    @Query("SELECT * FROM SeanceEntrainement WHERE id = 1")
+    SeanceEntrainement getFirst();
     @Insert
     void insert(SeanceEntrainement seanceEntrainement);
 

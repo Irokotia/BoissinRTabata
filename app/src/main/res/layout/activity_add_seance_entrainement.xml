@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF303030"
     tools:context=".AddSeanceEntrainementActivity">
 
     <LinearLayout
@@ -263,9 +264,10 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/total_tabata"
             android:layout_width="150dp"
             android:layout_height="80dp"
-            android:text="TABATA"
+            android:text="Total Tabata : 00:00:00"
             android:textAlignment="center"/>
         <Button
             android:id="@+id/button_save"
@@ -273,7 +275,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/border"
             android:text="Enregistrer"
             android:textAllCaps="false"
             />
