@@ -99,7 +99,6 @@ public class SelectionFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("SeanceEntrainement",seanceEntrainement);
                 llf.setArguments(bundle);
-                getActivity().getFragmentManager().popBackStack();
                 ft.addToBackStack(null);
                 ft.replace(R.id.nav_host_fragment,llf);
                 ft.commit();

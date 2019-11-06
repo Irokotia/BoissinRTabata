@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.boissinrtabata.db.DataBaseClient;
 import com.example.boissinrtabata.db.SeanceEntrainement;
+import com.example.boissinrtabata.model.FonctionsSeanceEntrainement;
 
 public class GestionSeanceEntrainementActivity extends AppCompatActivity {
 
@@ -31,6 +32,7 @@ public class GestionSeanceEntrainementActivity extends AppCompatActivity {
     private Button sauver;
     private Button button_supp;
     private SeanceEntrainement seanceEntrainement;
+    private int totaletabatas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,18 @@ public class GestionSeanceEntrainementActivity extends AppCompatActivity {
         nouveauTimeRest.setText(String.valueOf(seanceEntrainement.getTimeRest()));
         nouveauCycles.setText(String.valueOf(seanceEntrainement.getCycles()));
         nouveauTabatas.setText(String.valueOf(seanceEntrainement.getTabatas()));
+        FonctionsSeanceEntrainement fonctionsSeanceEntrainement = new FonctionsSeanceEntrainement();
+         totaletabatas = fonctionsSeanceEntrainement.CalculTabatas(Integer.valueOf(nouveauTimePrepare.getText().toString())
+                ,Integer.valueOf(nouveauTabatas.getText().toString())
+                ,Integer.valueOf(nouveauCycles.getText().toString())
+                ,Integer.valueOf(nouveauTimeWork.getText().toString())
+                ,Integer.valueOf(nouveauTimeRest.getText().toString())
+                ,Integer.valueOf(nouveauTimeLongRest.getText().toString()));
+        int secondes = totaletabatas % 60;
+        int minutes = (totaletabatas / 60) % 60;
+        int heures = (totaletabatas / 3600) % 3600;
+        seanceEntrainement.setTotaltabata(totaletabatas);
+        nouveauTotalTabata.setText("Total Tabata : " + String.format("%02d",heures) + ":" + String.format("%02d",minutes) + ":" + String.format("%02d",secondes));
 
 
         sauver.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +98,8 @@ public class GestionSeanceEntrainementActivity extends AppCompatActivity {
         final String sTimeRest = nouveauTimeRest.getText().toString().trim();
         final String sNumberCycles = nouveauCycles.getText().toString().trim();
         final String sNumberTabatas = nouveauTabatas.getText().toString().trim();
+        final String sLongRepos = nouveauTimeLongRest.getText().toString().trim();
+        final String sTotalTabata = nouveauTotalTabata.getText().toString().trim();
 
         // Vérifier les informations fournies par l'utilisateur
         if (sNomSeance.isEmpty()) {
@@ -135,6 +151,8 @@ public class GestionSeanceEntrainementActivity extends AppCompatActivity {
                 seanceEntrainement.setTimeRest(Integer.parseInt(sTimeRest));
                 seanceEntrainement.setCycles(Integer.parseInt(sNumberCycles));
                 seanceEntrainement.setTabatas(Integer.parseInt(sNumberTabatas));
+                seanceEntrainement.setTimeLongRest(Integer.parseInt(sLongRepos));
+                //seanceEntrainement.setTotaltabata(totaletabatas);
 
 
                 // adding to database
@@ -256,6 +274,18 @@ public class GestionSeanceEntrainementActivity extends AppCompatActivity {
                 nouveauTimeLongRest.setText(String.valueOf(Integer.valueOf(nouveauTimeLongRest.getText().toString()) + 1));
                 break;
         }
-        //RecalculTabata();
+        FonctionsSeanceEntrainement fonctionsSeanceEntrainement = new FonctionsSeanceEntrainement();
+        int totaletabatas = fonctionsSeanceEntrainement.CalculTabatas(Integer.valueOf(nouveauTimePrepare.getText().toString())
+                ,Integer.valueOf(nouveauTabatas.getText().toString())
+                ,Integer.valueOf(nouveauCycles.getText().toString())
+                ,Integer.valueOf(nouveauTimeWork.getText().toString())
+                ,Integer.valueOf(nouveauTimeRest.getText().toString())
+                ,Integer.valueOf(nouveauTimeLongRest.getText().toString()));
+        int secondes = totaletabatas % 60;
+        int minutes = (totaletabatas / 60) % 60;
+        int heures = (totaletabatas / 3600) % 3600;
+        seanceEntrainement.setTotaltabata(totaletabatas);
+        nouveauTotalTabata.setText("Total Tabata : " + String.format("%02d",heures) + ":" + String.format("%02d",minutes) + ":" + String.format("%02d",secondes));
+
     }
 }

@@ -63,7 +63,8 @@ public class LancementFragment extends Fragment {
             nombreRepet.setText("1/" + seanceEntrainement1.getCycles());
             int secondes = seanceEntrainement1.getTotaltabata() % 60;
             int minutes = (seanceEntrainement1.getTotaltabata() / 60) % 60;
-            nombreRestant.setText(minutes + ":" + secondes);
+            int hours = (seanceEntrainement1.getTotaltabata() / 3600) % 3600;
+            nombreRestant.setText(String.format("%02d",hours)+ ":" + String.format("%02d",minutes) + ":" + String.format("%02d",secondes));
             nombreSeries.setText("1/" + seanceEntrainement1.getTabatas());
 
         }else{
@@ -72,8 +73,7 @@ public class LancementFragment extends Fragment {
         btnDemarrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Toast.makeText(getActivity().getApplication(), "Lancement Seance : " + seanceEntrainement1.getNomSéance(), Toast.LENGTH_SHORT).show();
-
+               // Toast.makeText(getActivity().getApplication(), "Lancement Seance : " + seanceEntrainement1.getNomSéance(), Toast.LENGTH_SHORT).show();S
                 FragmentManager fm = getFragmentManager();
                 assert fm != null;
                 FragmentTransaction ft = fm.beginTransaction();

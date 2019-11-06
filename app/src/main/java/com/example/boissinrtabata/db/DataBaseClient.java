@@ -7,8 +7,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.boissinrtabata.model.CalculSeanceEntrainement;
-
 public class DataBaseClient {
     // Instance unique permettant de faire le lien avec la base de données
     private static DataBaseClient instance;

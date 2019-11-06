@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.boissinrtabata.db.DataBaseClient;
 import com.example.boissinrtabata.db.SeanceEntrainement;
-import com.example.boissinrtabata.model.CalculSeanceEntrainement;
+import com.example.boissinrtabata.model.FonctionsSeanceEntrainement;
 
 public class AddSeanceEntrainementActivity extends AppCompatActivity {
 
@@ -164,8 +162,8 @@ public class AddSeanceEntrainementActivity extends AppCompatActivity {
                 seanceEntrainement.setCycles(Integer.parseInt(sNumberCycles));
                 seanceEntrainement.setTabatas(Integer.parseInt(sNumberTabatas));
                 seanceEntrainement.setTimeLongRest(Integer.parseInt(sTimeLongRest));
-                CalculSeanceEntrainement calculSeanceEntrainement = new CalculSeanceEntrainement();
-                int totaletabatas = calculSeanceEntrainement.CalculTabatas(seanceEntrainement.getTimePrepare()
+                FonctionsSeanceEntrainement fonctionsSeanceEntrainement = new FonctionsSeanceEntrainement();
+                int totaletabatas = fonctionsSeanceEntrainement.CalculTabatas(seanceEntrainement.getTimePrepare()
                         ,seanceEntrainement.getTabatas()
                         ,seanceEntrainement.getCycles()
                         ,seanceEntrainement.getTimeWork()
@@ -202,78 +200,116 @@ public class AddSeanceEntrainementActivity extends AppCompatActivity {
     public void onAddTest(View view) {
         switch (view.getId()) {
             case R.id.button_moins_prepare:
-                if (!editTextTimePrepare.getText().toString().equals("0")) {
-                    editTextTimePrepare.setText(String.valueOf(Integer.valueOf(editTextTimePrepare.getText().toString()) - 1));
-                }else{
-                    Toast.makeText(getApplicationContext(),"This is the minimum value !", Toast.LENGTH_LONG).show();
+                if (!editTextTimePrepare.getText().toString().equals("")) {
+                    if (!editTextTimePrepare.getText().toString().equals("0")) {
+                        editTextTimePrepare.setText(String.valueOf(Integer.valueOf(editTextTimePrepare.getText().toString()) - 1));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "This is the minimum value !", Toast.LENGTH_LONG).show();
+                    }
                 }
                 break;
             case R.id.button_plus_prepare:
-                editTextTimePrepare.setText(String.valueOf(Integer.valueOf(editTextTimePrepare.getText().toString()) + 1));
+                if (!editTextTimePrepare.getText().toString().equals("")) {
+                    editTextTimePrepare.setText(String.valueOf(Integer.valueOf(editTextTimePrepare.getText().toString()) + 1));
+                }
                 break;
             case R.id.button_moins_work:
-                if (!editTextTimeWork.getText().toString().equals("0")) {
-                    editTextTimeWork.setText(String.valueOf(Integer.valueOf(editTextTimeWork.getText().toString()) - 1));
-                }else{
-                    Toast.makeText(getApplicationContext(),"This is the minimum value !", Toast.LENGTH_LONG).show();
+                if (!editTextTimeWork.getText().toString().equals("")) {
+                    if (!editTextTimeWork.getText().toString().equals("0")) {
+                        editTextTimeWork.setText(String.valueOf(Integer.valueOf(editTextTimeWork.getText().toString()) - 1));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "This is the minimum value !", Toast.LENGTH_LONG).show();
+                    }
                 }
                 break;
             case R.id.button_plus_work:
-                editTextTimeWork.setText(String.valueOf(Integer.valueOf(editTextTimeWork.getText().toString()) + 1));
+                if (!editTextTimeWork.getText().toString().equals("")) {
+                    editTextTimeWork.setText(String.valueOf(Integer.valueOf(editTextTimeWork.getText().toString()) + 1));
+                }
                 break;
             case R.id.button_moins_rest:
-                if (!editTextTimeRest.getText().toString().equals("0")) {
-                    editTextTimeRest.setText(String.valueOf(Integer.valueOf(editTextTimeRest.getText().toString()) - 1));
-                }else{
-                    Toast.makeText(getApplicationContext(),"This is the minimum value !", Toast.LENGTH_LONG).show();
+                if (!editTextTimeRest.getText().toString().equals("")) {
+                    if (!editTextTimeRest.getText().toString().equals("0")) {
+                        editTextTimeRest.setText(String.valueOf(Integer.valueOf(editTextTimeRest.getText().toString()) - 1));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "This is the minimum value !", Toast.LENGTH_LONG).show();
+                    }
                 }
                 break;
             case R.id.button_plus_rest:
-                editTextTimeRest.setText(String.valueOf(Integer.valueOf(editTextTimeRest.getText().toString()) + 1));
+                if (!editTextTimeRest.getText().toString().equals("")) {
+                    editTextTimeRest.setText(String.valueOf(Integer.valueOf(editTextTimeRest.getText().toString()) + 1));
+                }
                 break;
             case R.id.button_moins_cycles:
-                if (!editTextNumberCycles.getText().toString().equals("1")) {
-                    editTextNumberCycles.setText(String.valueOf(Integer.valueOf(editTextNumberCycles.getText().toString()) - 1));
-                }else{
-                    Toast.makeText(getApplicationContext(),"This is the minimum value !", Toast.LENGTH_LONG).show();
+                if (!editTextNumberCycles.getText().toString().equals("")) {
+                    if (!editTextNumberCycles.getText().toString().equals("1")) {
+                        editTextNumberCycles.setText(String.valueOf(Integer.valueOf(editTextNumberCycles.getText().toString()) - 1));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "This is the minimum value !", Toast.LENGTH_LONG).show();
+                    }
                 }
                 break;
             case R.id.button_plus_cycles:
-                editTextNumberCycles.setText(String.valueOf(Integer.valueOf(editTextNumberCycles.getText().toString()) + 1));
+                if (!editTextNumberCycles.getText().toString().equals("")) {
+                    editTextNumberCycles.setText(String.valueOf(Integer.valueOf(editTextNumberCycles.getText().toString()) + 1));
+                }
                 break;
             case R.id.button_moins_tabatas:
-                if (!editTextNumberTabatas.getText().toString().equals("1")) {
-                    editTextNumberTabatas.setText(String.valueOf(Integer.valueOf(editTextNumberTabatas.getText().toString()) - 1));
-                }else{
-                    Toast.makeText(getApplicationContext(),"This is the minimum value !", Toast.LENGTH_LONG).show();
+                if (!editTextNumberTabatas.getText().toString().equals("")) {
+                    if (!editTextNumberTabatas.getText().toString().equals("1")) {
+                        editTextNumberTabatas.setText(String.valueOf(Integer.valueOf(editTextNumberTabatas.getText().toString()) - 1));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "This is the minimum value !", Toast.LENGTH_LONG).show();
+                    }
                 }
                 break;
             case R.id.button_plus_tabatas:
-                editTextNumberTabatas.setText(String.valueOf(Integer.valueOf(editTextNumberTabatas.getText().toString()) + 1));
+                if (!editTextTimeLongRest.getText().toString().equals("")) {
+                    editTextNumberTabatas.setText(String.valueOf(Integer.valueOf(editTextNumberTabatas.getText().toString()) + 1));
+                }
                 break;
 
             case R.id.button_moins_longrest:
-                if (!editTextTimeLongRest.getText().toString().equals("1")) {
-                    editTextTimeLongRest.setText(String.valueOf(Integer.valueOf(editTextTimeLongRest.getText().toString()) - 1));
-                }else{
-                    Toast.makeText(getApplicationContext(),"This is the minimum value !", Toast.LENGTH_LONG).show();
+                if (!editTextTimeLongRest.getText().toString().equals("")) {
+                    if (!editTextTimeLongRest.getText().toString().equals("1")) {
+                        editTextTimeLongRest.setText(String.valueOf(Integer.valueOf(editTextTimeLongRest.getText().toString()) - 1));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "This is the minimum value !", Toast.LENGTH_LONG).show();
+                    }
                 }
                 break;
             case R.id.button_plus_longrest:
+                if (!editTextTimeLongRest.getText().toString().equals("")) {
                 editTextTimeLongRest.setText(String.valueOf(Integer.valueOf(editTextNumberTabatas.getText().toString()) + 1));
+            }
                 break;
         }
+        if(verifEntry(editTextTimePrepare.getText().toString()
+                    , editTextNumberTabatas.getText().toString()
+                , editTextNumberCycles.getText().toString()
+                , editTextTimeWork.getText().toString()
+                , editTextTimeRest.getText().toString()
+                , editTextTimeLongRest.getText().toString())) {
+            FonctionsSeanceEntrainement fonctionsSeanceEntrainement = new FonctionsSeanceEntrainement();
+            int totaletabatas = fonctionsSeanceEntrainement.CalculTabatas(Integer.valueOf(editTextTimePrepare.getText().toString())
+                    , Integer.valueOf(editTextNumberTabatas.getText().toString())
+                    , Integer.valueOf(editTextNumberCycles.getText().toString())
+                    , Integer.valueOf(editTextTimeWork.getText().toString())
+                    , Integer.valueOf(editTextTimeRest.getText().toString())
+                    , Integer.valueOf(editTextTimeLongRest.getText().toString()));
+            int secondes = totaletabatas % 60;
+            int minutes = (totaletabatas / 60) % 60;
+            int heures = (totaletabatas / 3600) % 3600;
+            totaleTabata.setText("Total Tabata : " + String.format("%02d", heures) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", secondes));
+        }
+    }
 
-        CalculSeanceEntrainement calculSeanceEntrainement = new CalculSeanceEntrainement();
-        int totaletabatas = calculSeanceEntrainement.CalculTabatas(Integer.valueOf(editTextTimePrepare.getText().toString())
-                ,Integer.valueOf(editTextNumberTabatas.getText().toString())
-                ,Integer.valueOf(editTextNumberCycles.getText().toString())
-                ,Integer.valueOf(editTextTimeWork.getText().toString())
-                ,Integer.valueOf(editTextTimeRest.getText().toString())
-                ,Integer.valueOf(editTextTimeLongRest.getText().toString()));
-        int secondes = totaletabatas % 60;
-        int minutes = (totaletabatas / 60) % 60;
-        int heures = (totaletabatas / 3600) % 3600;
-        totaleTabata.setText("Total Tabata : " + heures + ":" + minutes + ":" + secondes);
+    private boolean verifEntry(String s1,String s2,String s3,String s4,String s5,String s6){
+        if((!s1.equals("")) || (!s2.equals("")) || (!s3.equals("")) ||(!s4.equals("")) ||(!s5.equals("")) ||(!s6.equals(""))){
+            return false;
+        }else{
+            return true;
+        }
     }
 }
